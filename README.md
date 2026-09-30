@@ -15,7 +15,9 @@ For upgrades, use `nix profile list` to find the profile entry name and then
 
 Linux uses an FHS environment for the dynamically linked helpers embedded in
 the release binary. Working user namespaces and bubblewrap are required; some
-restricted containers cannot run it. Configure `spidering.browser_path` for an
+restricted containers cannot run it. Ubuntu's AppArmor restrictions may require
+an administrator to permit user namespaces for Nix's exact bubblewrap executable.
+The disposable CI runners apply that scoped profile for testing. Configure `spidering.browser_path` for an
 external browser when needed. Chromium is not bundled. Configuration and scan
 data stay in the user's normal Vigolium directories.
 
