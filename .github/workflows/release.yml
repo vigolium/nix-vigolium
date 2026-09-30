@@ -1,0 +1,103 @@
+name: Update release
+
+# Only upstream stable releases change package versions. Ordinary commits do not.
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Stable upstream tag (leave empty for latest)
+        required: false
+        type: string
+      force:
+        description: Validate the current version again
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: package-release
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    outputs:
+      validate: ${{ steps.prepare.outputs.validate }}
+      version: ${{ steps.prepare.outputs.version }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Download and verify upstream release
+        id: prepare
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          args=()
+          if [ "$FORCE" = true ]; then args+=(--force); fi
+          python3 .github/packaging/channel_release.py prepare \
+            --channel nix --tag "$RELEASE_TAG" "${args[@]}"
+      - uses: actions/upload-artifact@v4
+        if: steps.prepare.outputs.validate == 'true'
+        with:
+          name: candidate
+          path: .candidate/
+          if-no-files-found: error
+          include-hidden-files: true
+
+  validate:
+    if: needs.prepare.outputs.validate == 'true'
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm, macos-15-intel, macos-15]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: candidate
+          path: .
+      - uses: cachix/install-nix-action@v31
+      - name: Build and test the package
+        env:
+          VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          nix flake check
+          nix build --out-link "$RUNNER_TEMP/vigolium-result"
+          "$RUNNER_TEMP/vigolium-result/bin/vigolium" version | tee "$RUNNER_TEMP/vigolium-version.txt"
+          grep -F "$VERSION" "$RUNNER_TEMP/vigolium-version.txt"
+          "$RUNNER_TEMP/vigolium-result/bin/vigolium" --help
+
+  publish:
+    if: needs.prepare.outputs.validate == 'true' && github.ref == 'refs/heads/main'
+    needs: [prepare, validate]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: candidate
+          path: .
+      - name: Publish validated recipe without downgrading or replacing tags
+        run: python3 .github/packaging/channel_release.py publish --channel nix
