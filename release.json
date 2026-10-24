@@ -1,35 +1,35 @@
 {
-  "version": "0.5.4",
+  "version": "0.5.5",
   "assets": {
     "linux_amd64": {
-      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.4/vigolium_0.5.4_linux_amd64.tar.gz",
-      "sha256": "55807f4e88a901752081ee71d3f472a3afb172a3fbf517125f9dad0d30860ea2",
-      "hash": "sha256-VYB/ToipAXUgge5x0/Ryo6+xcqP79RcSX52tDTCGDqI=",
-      "name": "vigolium_0.5.4_linux_amd64.tar.gz"
+      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.5/vigolium_0.5.5_linux_amd64.tar.gz",
+      "sha256": "361f9d405f3bd6530e5c05c756d58b08f47f71e6dff1955ccf3eb206612183ff",
+      "hash": "sha256-Nh+dQF871lMOXAXHVtWLCPR/cebf8ZVczz6yBmEhg/8=",
+      "name": "vigolium_0.5.5_linux_amd64.tar.gz"
     },
     "linux_arm64": {
-      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.4/vigolium_0.5.4_linux_arm64.tar.gz",
-      "sha256": "b2d87a8ebbe677753f66eef01e2f0131463e9158a7c5b428d588caac4675a428",
-      "hash": "sha256-sth6jrvmd3U/Zu7wHi8BMUY+kVinxbQo1YjKrEZ1pCg=",
-      "name": "vigolium_0.5.4_linux_arm64.tar.gz"
+      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.5/vigolium_0.5.5_linux_arm64.tar.gz",
+      "sha256": "4e1c52c08bf817b587c4aa26ad3a38387328583c454fe23a4cd707ee27cc64f3",
+      "hash": "sha256-ThxSwIv4F7WHxKomrTo4OHMoWDxFT+I6TNcH7ifMZPM=",
+      "name": "vigolium_0.5.5_linux_arm64.tar.gz"
     },
     "darwin_amd64": {
-      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.4/vigolium_0.5.4_darwin_amd64.tar.gz",
-      "sha256": "a6aabdfda5eca1586806bc19697200b5c42fa138ad6e54e599d90e7edcc95536",
-      "hash": "sha256-pqq9/aXsoVhoBrwZaXIAtcQvoTitblTlmdkOftzJVTY=",
-      "name": "vigolium_0.5.4_darwin_amd64.tar.gz"
+      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.5/vigolium_0.5.5_darwin_amd64.tar.gz",
+      "sha256": "0289d2a611cf165ea8eb3d35c798c741ff5c12c42d891e36476ad527bf499391",
+      "hash": "sha256-AonSphHPFl6o6z01x5jHQf9cEsQtiR42R2rVJ79Jk5E=",
+      "name": "vigolium_0.5.5_darwin_amd64.tar.gz"
     },
     "darwin_arm64": {
-      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.4/vigolium_0.5.4_darwin_arm64.tar.gz",
-      "sha256": "40fe44c1c9041a6f25fe485dc2c9cd49565f7bad04a93e3bcce7f852e238831e",
-      "hash": "sha256-QP5EwckEGm8l/khdwsnNSVZfe60EqT47zOf4UuI4gx4=",
-      "name": "vigolium_0.5.4_darwin_arm64.tar.gz"
+      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.5/vigolium_0.5.5_darwin_arm64.tar.gz",
+      "sha256": "2e5e5a89f2522631d63e89ae48552f81ed34405e135a42c2991a802e71e86673",
+      "hash": "sha256-Ll5aifJSJjHWPomuSFUvge00QF4TWkLCmRqALnHoZnM=",
+      "name": "vigolium_0.5.5_darwin_arm64.tar.gz"
     },
     "windows_amd64": {
-      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.4/vigolium_0.5.4_windows_amd64.zip",
-      "sha256": "c9ca8d42823cb3190c0f090a9a5836701fba8a8eb74df1cc6a6ddba20c004038",
-      "hash": "sha256-ycqNQoI8sxkMDwkKmlg2cB+6io63TfHMam3bogwAQDg=",
-      "name": "vigolium_0.5.4_windows_amd64.zip"
+      "url": "https://github.com/vigolium/vigolium/releases/download/v0.5.5/vigolium_0.5.5_windows_amd64.zip",
+      "sha256": "9f301ec1167494d78d24697f253d28e3272bd0338634a04509e70236a49a2980",
+      "hash": "sha256-nzAewRZ0lNeNJGl/JT0o4ycr0DOGNKBFCecCNqSaKYA=",
+      "name": "vigolium_0.5.5_windows_amd64.zip"
     }
   }
 }
